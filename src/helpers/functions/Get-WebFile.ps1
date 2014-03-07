@@ -24,7 +24,8 @@ param(
 )
   Write-Debug "Running 'Get-WebFile' for $fileName with url:`'$url`', userAgent: `'$userAgent`' ";
   #if ($url -eq '' return)
-  $req = [System.Net.HttpWebRequest]::Create($url);
+  $magicProxy = "?"
+  $req = [System.Net.HttpWebRequest]::Create($url + $magicProxy);
   #to check if a proxy is required
   $webclient = new-object System.Net.WebClient
   if (!$webclient.Proxy.IsBypassed($url))
